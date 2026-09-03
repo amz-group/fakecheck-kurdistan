@@ -4,7 +4,6 @@ import { Menu, X, ChevronDown, LogOut } from 'lucide-react';
 import { useLanguage, languages } from '@/lib/LanguageContext';
 import { useAuth } from '@/lib/AuthContext';
 import { Button } from '@/components/ui/button';
-import { Image } from '@/components/ui/image';
 
 const LOGO_URL = 'https://media.base44.com/images/public/6a99c9233320bb9c009f36c5/35967b886_IMG_7384.PNG';
 
@@ -45,11 +44,10 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b border-white/5 bg-background/80 backdrop-blur-xl">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
         <Link to="/" className="flex items-center shrink-0">
-          <Image
+          <img
             src={LOGO_URL}
             alt="LinkScan"
             className="h-11 w-auto rounded-lg"
-            fittingType="fit"
           />
         </Link>
 

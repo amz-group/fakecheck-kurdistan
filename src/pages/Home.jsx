@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Link2, MessageSquare, Image, Newspaper, ArrowRight, ShieldCheck } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
-import { Image as UIImage } from '@/components/ui/image';
 
 const LOGO_URL = 'https://media.base44.com/images/public/6a99c9233320bb9c009f36c5/35967b886_IMG_7384.PNG';
 
@@ -23,11 +22,10 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-20 pb-16 sm:pt-28 sm:pb-24 relative">
           <div className="max-w-3xl mx-auto text-center">
-            <UIImage
+            <img
               src={LOGO_URL}
               alt="LinkScan"
               className="h-20 sm:h-24 w-auto rounded-xl mx-auto mb-6 animate-fade-in"
-              fittingType="fit"
             />
             <h1 className="font-heading font-bold text-4xl sm:text-6xl lg:text-7xl tracking-tight mb-4 animate-slide-up">
               {t('hero_title')}

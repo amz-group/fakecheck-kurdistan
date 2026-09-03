@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Shield, Link2, MessageSquare, Image, Newspaper, ArrowRight, TrendingUp, AlertTriangle, Users, Activity, ShieldCheck } from 'lucide-react';
+import { Shield, Link2, MessageSquare, Image, Newspaper, ArrowRight, AlertTriangle, Users, Activity, ShieldCheck } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
 import { base44 } from '@/api/base44Client';
 import StatCard from '@/components/StatCard';
@@ -15,7 +15,6 @@ const tools = [
 export default function Home() {
   const { t } = useLanguage();
   const [stats, setStats] = useState({ scans: 0, high: 0, suspicious: 0, reports: 0 });
-  const [alerts, setAlerts] = useState([]);
 
   useEffect(() => {
     (async () => {
@@ -30,7 +29,6 @@ export default function Home() {
           suspicious: allScans.filter(s => s.risk_level === 'suspicious').length,
           reports: reports.length,
         });
-        setAlerts(reports);
       } catch (e) {
         // empty state
       }
@@ -103,36 +101,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Latest alerts */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="font-heading font-bold text-2xl sm:text-3xl flex items-center gap-2">
-            <TrendingUp className="w-6 h-6 text-orange-400" />
-            {t('latest_alerts')}
-          </h2>
-        </div>
-        {alerts.length === 0 ? (
-          <div className="glass-card p-10 text-center text-muted-foreground">
-            <AlertTriangle className="w-10 h-10 mx-auto mb-3 opacity-40" />
-            {t('no_data')}
-          </div>
-        ) : (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {alerts.map((alert, i) => (
-              <div key={alert.id} className="glass-card glass-card-hover p-5 animate-slide-up" style={{ animationDelay: `${i * 80}ms` }}>
-                <div className="flex items-start justify-between gap-2 mb-3">
-                  <h3 className="font-semibold text-sm leading-snug">{alert.title}</h3>
-                  <span className="shrink-0 text-xs px-2 py-1 rounded-md bg-orange-500/10 text-orange-400 capitalize">{alert.platform}</span>
-                </div>
-                <p className="text-sm text-muted-foreground line-clamp-2 mb-3">{alert.description}</p>
-                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                  <Users className="w-3.5 h-3.5" /> {alert.report_count} {t('report_count').toLowerCase()}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </section>
     </div>
   );
 }

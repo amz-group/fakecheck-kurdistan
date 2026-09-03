@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Shield, Menu, X, ChevronDown, User, LogOut, LayoutDashboard } from 'lucide-react';
+import { Shield, Menu, X, ChevronDown, LogOut } from 'lucide-react';
 import { useLanguage, languages } from '@/lib/LanguageContext';
 import { useAuth } from '@/lib/AuthContext';
 import { Button } from '@/components/ui/button';
@@ -30,8 +30,6 @@ export default function Navbar() {
   const navLinks = [
     { to: '/', label: t('nav_home') },
     { to: '/scan/link', label: t('nav_scan') },
-    { to: '/trending', label: t('nav_trending') },
-    { to: '/community', label: t('nav_community') },
     { to: '/learn', label: t('nav_learn') },
   ];
 
@@ -62,11 +60,6 @@ export default function Navbar() {
               {l.label}
             </Link>
           ))}
-          {user && (
-            <Link to="/dashboard" className="px-3 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-white/5">
-              {t('nav_dashboard')}
-            </Link>
-          )}
         </div>
 
         <div className="flex items-center gap-2">
@@ -105,17 +98,6 @@ export default function Navbar() {
                   <div className="px-3 py-2 border-b border-white/5 mb-1">
                     <div className="text-xs font-medium truncate">{user.email}</div>
                   </div>
-                  <Link to="/profile" className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm hover:bg-white/5">
-                    <User className="w-4 h-4" /> {t('nav_profile')}
-                  </Link>
-                  <Link to="/dashboard" className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm hover:bg-white/5">
-                    <LayoutDashboard className="w-4 h-4" /> {t('nav_dashboard')}
-                  </Link>
-                  {user.role === 'admin' && (
-                    <Link to="/admin" className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm hover:bg-white/5 text-primary">
-                      <Shield className="w-4 h-4" /> {t('nav_admin')}
-                    </Link>
-                  )}
                   <button onClick={handleLogout} className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm hover:bg-white/5 text-destructive">
                     <LogOut className="w-4 h-4" /> {t('nav_logout')}
                   </button>
@@ -143,11 +125,6 @@ export default function Navbar() {
                 {l.label}
               </Link>
             ))}
-            {user && (
-              <Link to="/dashboard" className="block px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-white/5">
-                {t('nav_dashboard')}
-              </Link>
-            )}
             {!user && (
               <div className="flex gap-2 pt-2 border-t border-white/5">
                 <Link to="/login" className="flex-1"><Button variant="outline" className="w-full">{t('nav_login')}</Button></Link>

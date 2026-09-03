@@ -43,8 +43,6 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-sm mb-3">{t('brand_name')}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link to="/community" className="hover:text-primary">{t('nav_community')}</Link></li>
-              <li><Link to="/trending" className="hover:text-primary">{t('nav_trending')}</Link></li>
               <li><Link to="/learn" className="hover:text-primary">{t('footer_tips')}</Link></li>
               <li><a href="#" className="hover:text-primary">{t('privacy_policy')}</a></li>
               <li><a href="#" className="hover:text-primary">{t('terms')}</a></li>

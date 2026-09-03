@@ -110,9 +110,6 @@ export default function Home() {
             <TrendingUp className="w-6 h-6 text-orange-400" />
             {t('latest_alerts')}
           </h2>
-          <Link to="/community" className="text-sm text-primary hover:underline flex items-center gap-1">
-            {t('view_all')} <ArrowRight className="w-4 h-4 rtl:rotate-180" />
-          </Link>
         </div>
         {alerts.length === 0 ? (
           <div className="glass-card p-10 text-center text-muted-foreground">

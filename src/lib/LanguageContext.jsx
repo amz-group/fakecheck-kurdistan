@@ -1,6 +1,18 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
-const LanguageContext = createContext();
+// Preserve the context instance across HMR so editing this file
+// doesn't detach mounted consumers from their provider.
+let LanguageContext;
+if (import.meta.hot && import.meta.hot.data.LanguageContext) {
+  LanguageContext = import.meta.hot.data.LanguageContext;
+} else {
+  LanguageContext = createContext();
+}
+if (import.meta.hot) {
+  import.meta.hot.dispose((data) => {
+    data.LanguageContext = LanguageContext;
+  });
+}
 
 export const languages = {
   en: { label: 'English', dir: 'ltr', flag: '🇬🇧' },

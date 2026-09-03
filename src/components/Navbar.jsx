@@ -1,9 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Shield, Menu, X, ChevronDown, LogOut } from 'lucide-react';
+import { Menu, X, ChevronDown, LogOut } from 'lucide-react';
 import { useLanguage, languages } from '@/lib/LanguageContext';
 import { useAuth } from '@/lib/AuthContext';
 import { Button } from '@/components/ui/button';
+import { Image } from '@/components/ui/image';
+
+const LOGO_URL = 'https://media.base44.com/images/public/6a99c9233320bb9c009f36c5/35967b886_IMG_7384.PNG';
 
 export default function Navbar() {
   const { t, lang, setLang } = useLanguage();
@@ -41,14 +44,13 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/5 bg-background/80 backdrop-blur-xl">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
-        <Link to="/" className="flex items-center gap-2.5 shrink-0">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center glow-primary">
-            <Shield className="w-5 h-5 text-white" />
-          </div>
-          <div className="hidden sm:block leading-tight">
-            <div className="font-heading font-bold text-sm">{t('brand_name')}</div>
-            <div className="text-[10px] text-muted-foreground">{t('tagline')}</div>
-          </div>
+        <Link to="/" className="flex items-center shrink-0">
+          <Image
+            src={LOGO_URL}
+            alt="LinkScan"
+            className="h-11 w-auto rounded-lg"
+            fittingType="fit"
+          />
         </Link>
 
         <div className="hidden lg:flex items-center gap-1">

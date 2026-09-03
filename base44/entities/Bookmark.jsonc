@@ -1,0 +1,17 @@
+{
+  "name": "Bookmark",
+  "type": "object",
+  "properties": {
+    "scan_id": {
+      "type": "string",
+      "description": "Reference to the saved scan"
+    },
+    "label": {
+      "type": "string",
+      "description": "Optional label for the bookmark"
+    }
+  },
+  "required": [
+    "scan_id"
+  ]
+}

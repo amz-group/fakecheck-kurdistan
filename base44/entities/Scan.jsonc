@@ -1,0 +1,85 @@
+{
+  "name": "Scan",
+  "type": "object",
+  "properties": {
+    "scan_type": {
+      "type": "string",
+      "enum": [
+        "link",
+        "message",
+        "screenshot",
+        "news"
+      ],
+      "description": "Type of scan performed"
+    },
+    "input_content": {
+      "type": "string",
+      "description": "The raw input submitted for scanning (URL, message text, image url, or news text)"
+    },
+    "input_summary": {
+      "type": "string",
+      "description": "Short human-readable summary of the input for display in history"
+    },
+    "risk_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Risk score from 0 to 100"
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": [
+        "low",
+        "suspicious",
+        "high"
+      ],
+      "description": "Risk level category"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Short explanation of the risk assessment"
+    },
+    "warning_signs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          }
+        }
+      },
+      "description": "Detected warning signs"
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Recommended actions"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Confidence level of the analysis"
+    }
+  },
+  "required": [
+    "scan_type",
+    "input_content",
+    "risk_score",
+    "risk_level"
+  ]
+}

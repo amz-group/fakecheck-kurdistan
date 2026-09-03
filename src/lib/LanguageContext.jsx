@@ -18,7 +18,7 @@ const translations = {
     nav_profile: 'Profile',
     nav_logout: 'Logout',
     nav_admin: 'Admin',
-    brand_name: 'FakeCheck Kurdistan',
+    brand_name: 'FakeCheck KRD GROUP',
     tagline: 'Check Before You Click',
     hero_title: 'FakeCheck Kurdistan',
     hero_subtitle: 'Check Before You Click',

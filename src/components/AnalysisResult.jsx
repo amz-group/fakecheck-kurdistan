@@ -1,9 +1,6 @@
-import React, { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Share2, Bookmark, Flag, RotateCcw, ShieldCheck, AlertTriangle, ShieldAlert, Info, CheckCircle2, ExternalLink } from 'lucide-react';
+import React, { useRef } from 'react';
+import { Share2, RotateCcw, ShieldCheck, AlertTriangle, ShieldAlert, Info, CheckCircle2 } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
-import { useAuth } from '@/lib/AuthContext';
-import { base44 } from '@/api/base44Client';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import RiskGauge from './RiskGauge';
@@ -17,41 +14,11 @@ const levelMeta = {
 
 export default function AnalysisResult({ result, scanType, inputContent, onScanAnother }) {
   const { t } = useLanguage();
-  const { user } = useAuth();
   const { toast } = useToast();
   const shareRef = useRef(null);
-  const [saving, setSaving] = useState(false);
-  const [saved, setSaved] = useState(false);
 
   const meta = levelMeta[result.risk_level] || levelMeta.suspicious;
   const LevelIcon = meta.Icon;
-
-  const handleSave = async () => {
-    if (!user) {
-      toast({ title: t('nav_login'), description: t('save_scan') });
-      return;
-    }
-    setSaving(true);
-    try {
-      await base44.entities.Scan.create({
-        scan_type: scanType,
-        input_content: (inputContent || '').slice(0, 2000),
-        input_summary: (inputContent || '').slice(0, 80),
-        risk_score: result.risk_score,
-        risk_level: result.risk_level,
-        summary: result.summary,
-        warning_signs: result.warning_signs,
-        recommendations: result.recommendations,
-        confidence: result.confidence,
-      });
-      setSaved(true);
-      toast({ title: t('save_scan') + ' ✓' });
-    } catch (e) {
-      toast({ title: 'Error', description: e.message, variant: 'destructive' });
-    } finally {
-      setSaving(false);
-    }
-  };
 
   const handleShare = async () => {
     if (navigator.share) {
@@ -145,10 +112,6 @@ export default function AnalysisResult({ result, scanType, inputContent, onScanA
       {/* Action buttons */}
       <div className="flex flex-wrap gap-3">
         <Button onClick={handleShare} variant="outline"><Share2 className="w-4 h-4 me-2" />{t('share_result')}</Button>
-        <Button onClick={handleSave} disabled={saving || saved} variant="outline">
-          <Bookmark className="w-4 h-4 me-2" />{saved ? '✓' : t('save_scan')}
-        </Button>
-        <Link to="/community" className="inline-flex"><Button variant="outline"><Flag className="w-4 h-4 me-2" />{t('report_scam')}</Button></Link>
         <Button onClick={onScanAnother}><RotateCcw className="w-4 h-4 me-2" />{t('scan_another')}</Button>
       </div>
 

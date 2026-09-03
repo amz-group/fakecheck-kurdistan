@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Shield, Link2, MessageSquare, Image, Newspaper, ArrowRight, AlertTriangle, Users, Activity, ShieldCheck } from 'lucide-react';
+import { Shield, Link2, MessageSquare, Image, Newspaper, ArrowRight, ShieldCheck } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
-import { base44 } from '@/api/base44Client';
-import StatCard from '@/components/StatCard';
 
 const tools = [
   { to: '/scan/link', icon: Link2, titleKey: 'tool_link', descKey: 'tool_link_desc', color: 'from-blue-500/20 to-blue-500/5', iconColor: 'text-blue-400' },
@@ -14,26 +12,6 @@ const tools = [
 
 export default function Home() {
   const { t } = useLanguage();
-  const [stats, setStats] = useState({ scans: 0, high: 0, suspicious: 0, reports: 0 });
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const [allScans, reports] = await Promise.all([
-          base44.entities.Scan.list('-created_date', 500),
-          base44.entities.ScamReport.filter({ status: 'approved' }, '-created_date', 6),
-        ]);
-        setStats({
-          scans: allScans.length,
-          high: allScans.filter(s => s.risk_level === 'high').length,
-          suspicious: allScans.filter(s => s.risk_level === 'suspicious').length,
-          reports: reports.length,
-        });
-      } catch (e) {
-        // empty state
-      }
-    })();
-  }, []);
 
   return (
     <div>
@@ -88,16 +66,6 @@ export default function Home() {
               </Link>
             );
           })}
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <StatCard icon={Activity} label={t('stats_total_scans')} value={stats.scans} color="primary" />
-          <StatCard icon={AlertTriangle} label={t('stats_dangerous')} value={stats.high} color="red" />
-          <StatCard icon={Shield} label={t('stats_suspicious')} value={stats.suspicious} color="orange" />
-          <StatCard icon={Users} label={t('stats_reports')} value={stats.reports} color="green" />
         </div>
       </section>
 

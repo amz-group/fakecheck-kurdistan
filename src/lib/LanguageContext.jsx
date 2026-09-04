@@ -30,8 +30,8 @@ const translations = {
     nav_profile: 'Profile',
     nav_logout: 'Logout',
     nav_admin: 'Admin',
-    brand_name: '© 2026 KRD Group. All rights reserved.',
-    tagline: '',
+    brand_name: 'KRD Group. All rights reserved.',
+   
     hero_title: 'SafeCheck',
     hero_subtitle: 'Check Before You Click',
     hero_desc: 'Protect yourself from suspicious links, scam messages, phishing attempts, fake content, and online fraud.',

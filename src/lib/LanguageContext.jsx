@@ -30,7 +30,7 @@ const translations = {
     nav_profile: 'Profile',
     nav_logout: 'Logout',
     nav_admin: 'Admin',
-    brand_name: 'KRD Group. All rights reserved.',
+    brand_name: 'KRD Group.',
     tagline: '  ',
     hero_title: 'SafeCheck',
     hero_subtitle: 'Check Before You Click',
@@ -116,7 +116,7 @@ const translations = {
     security_tips: 'Security Tips',
     login: 'Login',
     register: 'Register',
- 
+    footer_tagline: 'All rights reserved.',
     privacy_policy: 'Privacy Policy',
     terms: 'Terms',
     contact: 'Contact',

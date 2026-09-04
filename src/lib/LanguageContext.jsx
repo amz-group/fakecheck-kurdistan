@@ -31,9 +31,9 @@ const translations = {
     nav_logout: 'Logout',
     nav_admin: 'Admin',
     brand_name: 'KRD Group. All rights reserved.',
-   
+    tagline: '  ',
     hero_title: 'SafeCheck',
-    hero_subtitle: 'Check Before You Click',
+    hero_subtitle: '',
     hero_desc: 'Protect yourself from suspicious links, scam messages, phishing attempts, fake content, and online fraud.',
     hero_cta: 'Scan Now',
     tools_title: 'Scanning Tools',
